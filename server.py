@@ -1,11 +1,12 @@
 import threading
 import socket
 
-HOST = socket.gethostbyname(socket.gethostname())
+HOST = '127.0.1.1'
 PORT = 55555
+ADDR = (HOST, PORT)
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((HOST, PORT))
+server.bind(ADDR)
 server.listen()
 
 clients = []
@@ -37,7 +38,7 @@ def receive():
 
         client.send('NICK'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
-        nickname.append(client)
+        nicknames.append(client)
 
         print(f'nickname of the client is {nickname}')
         broadcast(f'{nickname} joined the chat'.encode('ascii'))
