@@ -1,10 +1,13 @@
 import socket
 import threading
 
+PORT = 55555
+HOST = '127.0.1.1'
 nickname = input('Choose a nickname: ')
+ADDR = (HOST, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(socket.gethostbyname(socket.gethostname()), 55555)
+client.connect(ADDR)
 
 def receive():
     while True:
