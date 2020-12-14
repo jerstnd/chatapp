@@ -1,14 +1,15 @@
 import socket
 import threading
 
-PORT = 55555
-HOST = '127.0.1.1'
+PORT = 5050
+HOST = socket.gethostbyname(socket.gethostname())
 nickname = input('Choose a nickname: ')
 ADDR = (HOST, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
 
+#receive data from server
 def receive():
     while True:
         try:
@@ -21,6 +22,7 @@ def receive():
             print('An error occured!')
             client.close()
             break
+
 
 def write():
     while True:
